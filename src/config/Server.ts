@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-
+import cors from 'cors';
 import {
   authRouter,
   personaRouter,
@@ -27,6 +27,7 @@ export class Server {
   }
 
   middlewares() {
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(authRouter);
     this.app.use(personaRouter);

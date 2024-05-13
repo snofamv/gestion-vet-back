@@ -29,6 +29,7 @@ export const signUpService = async (
 
     if (resultSetEmpleado && resultSetEmpleado.affectedRows > 0) {
       usuario.idUsuario = generarId();
+      usuario.idEmpleado = empleado.idEmpleado; // probando esto
       usuario.password = usuario.password = await encryptPassword(
         usuario.password!,
       );
