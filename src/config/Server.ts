@@ -7,9 +7,12 @@ import {
   empleadoRouter,
   usuarioRouter,
   dueñoMascotaRouter,
+  mascotaRouter,
 } from '../routes';
 
-import { pool } from './db';
+import { errorHandler } from '../middlewares/HandleError';
+
+// import { pool } from './db';
 
 config({
   path: './.env',
@@ -34,13 +37,16 @@ export class Server {
     this.app.use(empleadoRouter);
     this.app.use(usuarioRouter);
     this.app.use(dueñoMascotaRouter);
+    this.app.use(mascotaRouter);
 
-    pool.query('SELECT * FROM cargo;', (err, field) => {
-      if (err) {
-        return 2;
-      }
-      console.log(field);
-    });
+    this.app.use(errorHandler);
+
+    // pool.query('SELECT * FROM cargo;', (err, field) => {
+    //   if (err) {
+    //     return 2;
+    //   }
+    //   console.log(field);
+    // });
   }
 
   listen() {

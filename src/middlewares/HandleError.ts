@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response } from 'express';
+
 export class ErrorHandler extends Error {
   status: number = -1;
   details: string = '';
@@ -14,3 +16,18 @@ export class ErrorHandler extends Error {
     this.internalMessage = message;
   }
 }
+
+export const errorHandler = (
+  err: unknown,
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (err instanceof ErrorHandler) {
+    res.status(err.status || 500).json({
+      error: err.internalMessage,
+    });
+  }
+
+  next();
+};
