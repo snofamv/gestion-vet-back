@@ -1,5 +1,6 @@
 # variables de entorno .env
 
+```bash
 PORT = 80
 NODE_ENVIRONMENT = 'production'
 
@@ -8,49 +9,59 @@ DB_PORT=3306
 DB_NAME='bd_clinicaVet'
 DB_USER='userVet'
 DB_PASSWORD='root'
+```
 
 ## ENDPOINT USUARIO
 
 LOGIN USUARIO
 POST /auth/login
+
+```json
 {
-    nombreUsuario: "",
-    password: ""
+  "nombreUsuario": "",
+  "password": ""
 }
+```
 
 SIGNUP USUARIO => REGISTRAR PERSONA => EMPLEADO => USUARIO
 POST /auth/login
+
+```json
 {
-    nombreUsuario: "",
-    password: ""
-    nombre : "Ana",
-    apellidoPaterno: "Rodriguez",
-    apellidoMaterno: "Rodriguez",
-    fechaNacimiento: "1990-01-01",
-    rut: 9878745,
-    dv: "k",
-    sexo: "M",
-    telefono: 97878451,
-    direccion: "calle 1",
-    email: "ana@ana123.cl",
+  "nombreUsuario": "",
+  "password": "",
+  "nombre": "Ana",
+  "apellidoPaterno": "Rodriguez",
+  "apellidoMaterno": "Rodriguez",
+  "fechaNacimiento": "1990-01-01",
+  "rut": 9878745,
+  "dv": "k",
+  "sexo": "M",
+  "telefono": 97878451,
+  "direccion": "calle 1",
+  "email": "ana@ana123.cl"
 }
+```
 
 ## ENDPOINT DUEÑO MASCOTAS
 
 REGISTRAR DUEÑO MASCOTA
 POST /titular-mascota
+
+```json
 {
-    nombre : "Ana",
-    apellidoPaterno: "Rodriguez",
-    apellidoMaterno: "Rodriguez",
-    fechaNacimiento: "1990-01-01",
-    rut: 9878745,
-    dv: "k",
-    sexo: "M",
-    telefono: 97878451,
-    direccion: "calle 1",
-    email: "ana@ana123.cl",
+  "nombre": "Ana",
+  "apellidoPaterno": "Rodriguez",
+  "apellidoMaterno": "Rodriguez",
+  "fechaNacimiento": "1990-01-01",
+  "rut": 9878745,
+  "dv": "k",
+  "sexo": "M",
+  "telefono": 97878451,
+  "direccion": "calle 1",
+  "email": "ana@ana123.cl"
 }
+```
 
 OTENER TODOS LOS DUEÑOS DE MASCOTAS
 GET /titulares-mascota
@@ -62,19 +73,22 @@ GET /titular-mascota/rut/:rut
 
 ACTUALIZAR DATOS PERSONA
 PATCH /persona
-{  
-    idPersona: '###############'
-    nombre : "Ana",
-    apellidoPaterno: "Rodriguez",
-    apellidoMaterno: "Rodriguez",
-    fechaNacimiento: "1990-01-01",
-    rut: 9878745,
-    dv: "k",
-    sexo: "M",
-    telefono: 97878451,
-    direccion: "calle 1",
-    email: "ana@ana123.cl",
+
+```json
+{
+  "idPersona": "###############",
+  "nombre": "Ana",
+  "apellidoPaterno": "Rodriguez",
+  "apellidoMaterno": "Rodriguez",
+  "fechaNacimiento": "1990-01-01",
+  "rut": 9878745,
+  "dv": "k",
+  "sexo": "M",
+  "telefono": 97878451,
+  "direccion": "calle 1",
+  "email": "ana@ana123.cl"
 }
+```
 
 LISTAR TODAS LAS PERSONAS
 GET /personas
@@ -92,15 +106,18 @@ GET /empleado/id-persona/:idPersona
 
 ACTUALIZAR EMPLEADO
 PATCH /empleado
+
+```json
 {
-    idEmpleado: "###############"
-    codMedico: "AAD" ,
-    fechaIngreso: "2021-01-01" ,
-    fechaSalida: "201-01-01" ,
-    idCargo: 1,
-    idEstadoEmpleado:5,
-    idEspecialidad:1
+  "idEmpleado": "###############",
+  "codMedico": "AAD",
+  "fechaIngreso": "2021-01-01",
+  "fechaSalida": "201-01-01",
+  "idCargo": 1,
+  "idEstadoEmpleado": 5,
+  "idEspecialidad": 1
 }
+```
 
 ## ENDPOINTS MASCOTAS
 
@@ -115,28 +132,34 @@ GET /mascota/:idMascota
 
 REGISTRAR MASCOTA
 POST /titular-mascota/rut/:rut/mascota
+
+```json
 {
-    "nombreMascota": "destructor letal23",
-    "especie": "perro",
-    "raza": "chihuahua",
-    "genero": "macho",
-    "edadMascota": 5
+  "nombreMascota": "destructor letal23",
+  "especie": "perro",
+  "raza": "chihuahua",
+  "genero": "macho",
+  "edadMascota": 5
 }
+```
 
 ACTUALIZAR MASCOTA
 PATCH /mascota
+
+```json
 {
-    "idMascota": "88fbc312-63ff-47f3-8dc7-bb73bcee5a48",
-    "nombreMascota": "destructor letallll",
-    "especie": "perro",
-    "raza": "chihuahua",
-    "genero": "macho",
-    "edadMascota": 5
+  "idMascota": "88fbc312-63ff-47f3-8dc7-bb73bcee5a48",
+  "nombreMascota": "destructor letallll",
+  "especie": "perro",
+  "raza": "chihuahua",
+  "genero": "macho",
+  "edadMascota": 5
 }
+```
 
 # paquetes de prettier y linter
 
-```json
+```
 
     //  instalación  y config de linter
     npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
