@@ -8,6 +8,10 @@ import {
   usuarioRouter,
   dueñoMascotaRouter,
   mascotaRouter,
+  fichaClinicaRouter,
+  fichaIngresoRouter,
+  tratamientoMascotaRouter,
+  recetaMascotaRouter,
 } from '../routes';
 
 import { errorHandler } from '../middlewares/HandleError';
@@ -38,15 +42,12 @@ export class Server {
     this.app.use(usuarioRouter);
     this.app.use(dueñoMascotaRouter);
     this.app.use(mascotaRouter);
+    this.app.use(fichaClinicaRouter);
+    this.app.use(fichaIngresoRouter);
+    this.app.use(tratamientoMascotaRouter);
+    this.app.use(recetaMascotaRouter);
 
     this.app.use(errorHandler);
-
-    // pool.query('SELECT * FROM cargo;', (err, field) => {
-    //   if (err) {
-    //     return 2;
-    //   }
-    //   console.log(field);
-    // });
   }
 
   listen() {

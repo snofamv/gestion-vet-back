@@ -5,6 +5,7 @@ import { generarToken } from '../utils/generarToken';
 import { comparePassword } from '../middlewares/comparePassword';
 import { Persona } from '../models/Persona';
 import { Empleado } from '../models/Empleado';
+import { validarToken } from '../utils/validarToken';
 
 export class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
@@ -63,6 +64,31 @@ export class AuthController {
           success: true,
         });
       }
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async validateToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { token } = req.query;
+
+      if (token) {
+        if (validarToken(token.toString())) {
+          return res.status(200).json({
+            success: true,
+          });
+        }
+
+        return res.status(401).json({
+          success: false,
+          message: 'token inválido',
+        });
+      }
+      return res.status(401).json({
+        success: false,
+        message: 'token requerido',
+      });
     } catch (err) {
       next(err);
     }
