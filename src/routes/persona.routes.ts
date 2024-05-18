@@ -28,6 +28,6 @@ personaRouter.get(
   personaController.getPersonaByNombreUsuario,
 );
 
-personaRouter.patch('/persona', existRut, personaController.updatePersona);
+personaRouter.patch('/persona', personaController.updatePersona);
 
 personaRouter.get('/personas/', personaController.getPersonas);
