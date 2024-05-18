@@ -16,7 +16,7 @@ empleadoRouter.get(
   empleadoController.getEmpleadoByIdPersona,
 );
 
-empleadoRouter.get('/empleados/', empleadoController.getEmpleados);
+empleadoRouter.get('/empleados', empleadoController.getEmpleados);
 
 empleadoRouter.get(
   '/empleado/nombre-usuario/:nombreUsuario',
