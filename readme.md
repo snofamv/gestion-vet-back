@@ -187,6 +187,42 @@ PATCH /mascota
 }
 ```
 
+## ENDPOINT CITA MEDICA
+
+REGISTRAR CITA
+
+```json
+{
+  "fechaCitaMedica": "2024-01-01",
+  "horaCitaMedica": "15:30:00"
+}
+```
+
+RETURN IDCITAMEDICA
+
+```json
+{
+  "success": true,
+  "data": "07ee7083-40f1-436c-be07-15f5033e953e"
+}
+```
+
+ACTUALIZAR CITA MEDICA
+
+PATCH /cita-medica
+
+```json
+{
+  "idCitaMedica": "07ee7083-40f1-436c-be07-15f5033e953e",
+  "fechaCitaMedica": "2024-01-01",
+  "horaCitaMedica": "15:30:00"
+}
+```
+
+OBTENER CITAS MEDICAS POR ID MASCOTA
+
+GET /citas-medicas/mascota/:idMascota
+
 ## ENDPOINT FICHACLINICA
 
 OBTENER FICHAS CLINICAS DE TODOS LOS DUEÑOS DE MASCOTAS

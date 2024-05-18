@@ -1,17 +1,22 @@
-import { ResultSetHeader } from 'mysql2';
 import { pool } from '../config/db';
 import { ErrorHandler } from '../middlewares/HandleError';
 import { DueñoMascota as DueñoMascotaMySQL } from '../models/DueñoMascotaMySQL';
 import { DueñoMascota } from '../models/DueñoMascota';
 import { Persona as PersonaMySQL } from '../models/PersonaMySQL';
+import { DueñoMascotaResult } from '../models/DueñoMascotaResult';
+import { MascotaResult } from '../models/MascotaResult';
 const promise = pool.promise();
 
 export const setDueñoMascota = async (dueñoMascota: DueñoMascota) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<DueñoMascotaResult>(
       `insert into dueño_mascota(idDueño, idPersona) values(?,?)`,
       [dueñoMascota.idDueño, dueñoMascota.idPersona],
     );
+
+    if (result.affectedRows > 0) {
+      result.idDueño = dueñoMascota.idDueño;
+    }
 
     return result;
   } catch (err) {
@@ -106,10 +111,13 @@ export const getDueñoByRut = async (rut: number) => {
 
 export const setMascotasDueño = async (idDueño: string, idMascota: string) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<MascotaResult>(
       `insert into mascotas_dueño(idDueño, idMascota) values(?,?)`,
       [idDueño, idMascota],
     );
+    if (result.affectedRows) {
+      result.idMascota = idMascota;
+    }
 
     return result;
   } catch (err) {

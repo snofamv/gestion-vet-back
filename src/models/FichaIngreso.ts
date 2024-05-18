@@ -1,5 +1,5 @@
 export interface FichaIngreso {
-  idFichaIngreso?: string;
+  idFichaIngreso: string;
   sintomas: string;
   antecedentes: string;
   fechaAlta: string;

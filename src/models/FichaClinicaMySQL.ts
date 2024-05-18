@@ -8,4 +8,5 @@ export interface FichaClinica extends RowDataPacket {
   observaciones: string;
   antecedentes: string;
   idMascota: string;
+  idCitaMedica: string;
 }

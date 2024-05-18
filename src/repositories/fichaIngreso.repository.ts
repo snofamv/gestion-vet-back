@@ -3,12 +3,13 @@ import { pool } from '../config/db';
 import { FichaIngreso } from '../models/FichaIngreso';
 import { FichaIngreso as FichaIngresoMySQL } from '../models/FichaIngresoMySQL';
 import { ErrorHandler } from '../middlewares/HandleError';
+import { FichaIngresoResult } from '../models/FichaIngresoResult';
 
 const promise = pool.promise();
 
 export const setFichaIngreso = async (fichaIngreso: FichaIngreso) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<FichaIngresoResult>(
       `insert into fichaingreso(idFichaIngreso, sintomas, antecedentes, fechaAlta, fechaIngreso, diagnostico, observaciones, temperatura, idEstados, idFichaClinica) values(?,?,?,?,?,?,?,?,?,?);`,
       [
         fichaIngreso.idFichaIngreso,
@@ -23,6 +24,10 @@ export const setFichaIngreso = async (fichaIngreso: FichaIngreso) => {
         fichaIngreso.idFichaClinica,
       ],
     );
+
+    if (result.affectedRows > 0) {
+      result.idFichaIngreso = fichaIngreso.idFichaIngreso;
+    }
 
     return result;
   } catch (err) {

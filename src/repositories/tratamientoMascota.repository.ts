@@ -3,6 +3,7 @@ import { pool } from '../config/db';
 import { TratamientoMascota } from '../models/TratamientoMascota';
 import { TratamientoMascota as TratamientoMascotaMySQL } from '../models/TratamientoMascotaMySQL';
 import { ErrorHandler } from '../middlewares/HandleError';
+import { tratamientoResult } from '../models/TratamientoResult';
 
 const promise = pool.promise();
 
@@ -10,7 +11,7 @@ export const setTratamientoMascota = async (
   tratamientoMascota: TratamientoMascota,
 ) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<tratamientoResult>(
       `insert into tratamiento(idTratamiento, descripcion, fecha, tipo, costo) values(?,?,?,?,?);`,
       [
         tratamientoMascota.idTratamiento,
@@ -20,6 +21,11 @@ export const setTratamientoMascota = async (
         tratamientoMascota.costo,
       ],
     );
+
+    if (result.affectedRows > 0) {
+      result.idTratamiento = tratamientoMascota.idTratamiento;
+    }
+
     return result;
   } catch (err) {
     if (err instanceof Error) {
@@ -40,10 +46,15 @@ export const setTratamientosMascotas = async (
   idTratamiento: string,
 ) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<tratamientoResult>(
       `insert into tratamiento_mascota(idFichaClinica, idTratamiento) values(?,?);`,
       [idFichaClinica, idTratamiento],
     );
+
+    if (result.affectedRows > 0) {
+      result.idTratamiento = idTratamiento;
+    }
+
     return result;
   } catch (err) {
     if (err instanceof Error) {

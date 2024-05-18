@@ -1,7 +1,7 @@
 import { RowDataPacket } from 'mysql2';
 
 export interface RecetaMascota extends RowDataPacket {
-  idReceta?: string;
+  idReceta: string;
   descripcion: string;
   medico: string;
   vigencia: number;

@@ -1,5 +1,5 @@
 export interface RecetaMascota {
-  idReceta?: string;
+  idReceta: string;
   descripcion: string;
   medico: string;
   vigencia: number;

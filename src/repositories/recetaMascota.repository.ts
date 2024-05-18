@@ -2,12 +2,13 @@ import { ResultSetHeader } from 'mysql2';
 import { pool } from '../config/db';
 import { RecetaMascota } from '../models/RecetaMascota';
 import { ErrorHandler } from '../middlewares/HandleError';
+import { RecetaMascotaResult } from '../models/RecetaMascotaResult';
 
 const promise = pool.promise();
 
 export const setRecetaMascota = async (recetaMascota: RecetaMascota) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<RecetaMascotaResult>(
       `insert into receta(idReceta, descripcion, medico, vigencia, fechaEmision, retieneReceta) values(?,?,?,?,?,?);`,
       [
         recetaMascota.idReceta,
@@ -18,6 +19,10 @@ export const setRecetaMascota = async (recetaMascota: RecetaMascota) => {
         recetaMascota.retieneReceta,
       ],
     );
+    if (result.affectedRows > 0) {
+      result.idReceta = recetaMascota.idReceta;
+    }
+
     return result;
   } catch (err) {
     if (err instanceof Error) {
@@ -69,10 +74,15 @@ export const setRecetaFichaIngreso = async (
   idFichaIngreso: string,
 ) => {
   try {
-    const [result] = await promise.query<ResultSetHeader>(
+    const [result] = await promise.query<RecetaMascotaResult>(
       `insert into receta_ficha(idReceta, idFichaIngreso) values(?,?);`,
       [idReceta, idFichaIngreso],
     );
+
+    if (result.affectedRows > 0) {
+      result.idReceta = idReceta;
+    }
+
     return result;
   } catch (err) {
     if (err instanceof Error) {

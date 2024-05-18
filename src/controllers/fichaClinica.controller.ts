@@ -32,6 +32,7 @@ export class FichaClinicaController {
       if (result && result.affectedRows > 0) {
         return res.status(200).json({
           success: true,
+          data: result.idFichaClinica,
         });
       }
 
