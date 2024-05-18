@@ -9,7 +9,7 @@ const promise = pool.promise();
 export const getUser = async (usuario: Usuario) => {
   try {
     const [rows] = await promise.query<UsuarioMySQL[]>(
-      `SELECT * FROM usuario WHERE usuario.nombreUsuario = ? ;`,
+      `SELECT usuario.idUsuario, usuario.idEmpleado, usuario.nombreUsuario, usuario.password, empleado.idCargo FROM usuario join empleado on usuario.idEmpleado = empleado.idEmpleado WHERE usuario.nombreUsuario = ? ;`,
       [usuario.nombreUsuario],
     );
 
@@ -28,7 +28,7 @@ export const getUser = async (usuario: Usuario) => {
 export const getUsers = async () => {
   try {
     const [rows] = await promise.query<UsuarioMySQL[]>(
-      `SELECT * FROM usuario  ;`,
+      `SELECT * FROM usuario;`,
     );
 
     return rows;
