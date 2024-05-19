@@ -130,7 +130,7 @@ export const getEmpleadoByIdPersona = async (idPersona: string) => {
 export const getEmpleados = async () => {
   try {
     const [rows] = await promise.query<EmpleadoMySql[]>(
-      `SELECT * FROM empleado  ;`,
+      `SELECT * FROM empleado join persona on empleado.idPersona = persona.idPersona ;`,
     );
 
     return rows;
