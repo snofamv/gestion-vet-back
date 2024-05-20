@@ -9,11 +9,12 @@ const promise = pool.promise();
 export const setCitaMedica = async (CitaMedica: CitaMedica) => {
   try {
     const [result] = await promise.query<CitaMedicaResult>(
-      `insert into citaMedica(idCitaMedica, fechaCitaMedica, horaCitaMedica) values(?,?,?);`,
+      `insert into citaMedica(idCitaMedica, fechaCitaMedica, horaCitaMedica, idMascota) values(?,?,?,?);`,
       [
         CitaMedica.idCitaMedica,
         CitaMedica.fechaCitaMedica,
         CitaMedica.horaCitaMedica,
+        CitaMedica.idMascota,
       ],
     );
 
@@ -101,6 +102,25 @@ export const getCitasMedicasByRut = async (rut: number) => {
       newError.setInternalMessage(
         'Surgió un error al obtener citas Medicas por rut dueño',
       );
+      newError.setDetailsError(err.message);
+      throw newError;
+    }
+  }
+};
+
+export const getCitasMedicas = async () => {
+  try {
+    const [rows] =
+      await promise.query<CitaMedicaMySQL[]>(`select * from citas;`);
+    return rows;
+  } catch (err) {
+    if (err instanceof Error) {
+      const newError = new ErrorHandler('Se ha producido un error interno.');
+
+      console.log(err.message);
+
+      newError.setStatus(500);
+      newError.setInternalMessage('Surgió un error al obtener citas Medicas');
       newError.setDetailsError(err.message);
       throw newError;
     }

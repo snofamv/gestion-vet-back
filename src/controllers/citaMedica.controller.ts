@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import {
   getCitasMedicasByIdMascotaService,
   getCitasMedicasByRutService,
+  getCitasMedicasService,
   setCitaMedicaService,
   updateCitaMedicaService,
 } from '../services/citaMedica.service';
@@ -82,6 +83,26 @@ export class CitaMedicaController {
       const { rut } = req.params;
 
       const citasMedicas = await getCitasMedicasByRutService(parseInt(rut));
+
+      if (citasMedicas) {
+        return res.status(200).json({
+          success: true,
+          data: citasMedicas || [],
+        });
+      }
+
+      return res.status(500).json({
+        success: false,
+        message: 'surgio un error al registrar cita medica',
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getCitasMedicas(req: Request, res: Response, next: NextFunction) {
+    try {
+      const citasMedicas = await getCitasMedicasService();
 
       if (citasMedicas) {
         return res.status(200).json({

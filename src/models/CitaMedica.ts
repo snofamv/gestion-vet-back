@@ -1,5 +1,6 @@
 export interface CitaMedica {
   idCitaMedica: string;
   fechaCitaMedica: string;
-  horaCitaMedica: strings;
+  horaCitaMedica: string;
+  idMascota: string;
 }

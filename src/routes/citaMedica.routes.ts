@@ -8,5 +8,13 @@ const citaMedicaController = new CitaMedicaController();
 citaMedicaRouter.post('/cita-medica', citaMedicaController.setCitaMedica);
 citaMedicaRouter.patch('/cita-medica', citaMedicaController.updateCitaMedica);
 
-citaMedicaRouter.get('/citas-medicas/mascota/:idMascota');
-citaMedicaRouter.get('/citas-medicas/rut/:rut');
+citaMedicaRouter.get(
+  '/citas-medicas/mascota/:idMascota',
+  citaMedicaController.getCitasMedicasByIdMascota,
+);
+citaMedicaRouter.get(
+  '/citas-medicas/rut/:rut',
+  citaMedicaController.getCitasMedicasByRut,
+);
+
+citaMedicaRouter.get('/citas-medicas', citaMedicaController.getCitasMedicas);
