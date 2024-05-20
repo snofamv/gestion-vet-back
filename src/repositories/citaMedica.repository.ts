@@ -110,8 +110,9 @@ export const getCitasMedicasByRut = async (rut: number) => {
 
 export const getCitasMedicas = async () => {
   try {
-    const [rows] =
-      await promise.query<CitaMedicaMySQL[]>(`select * from citas;`);
+    const [rows] = await promise.query<CitaMedicaMySQL[]>(
+      `select * from citaMedica;`,
+    );
     return rows;
   } catch (err) {
     if (err instanceof Error) {
