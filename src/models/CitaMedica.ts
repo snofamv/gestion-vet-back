@@ -3,4 +3,5 @@ export interface CitaMedica {
   fechaCitaMedica: string;
   horaCitaMedica: string;
   idMascota: string;
+  idEstadoCita: number;
 }

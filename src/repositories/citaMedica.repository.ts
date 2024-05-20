@@ -9,12 +9,13 @@ const promise = pool.promise();
 export const setCitaMedica = async (CitaMedica: CitaMedica) => {
   try {
     const [result] = await promise.query<CitaMedicaResult>(
-      `insert into citaMedica(idCitaMedica, fechaCitaMedica, horaCitaMedica, idMascota) values(?,?,?,?);`,
+      `insert into citaMedica(idCitaMedica, fechaCitaMedica, horaCitaMedica, idMascota, idEstadoCita) values(?,?,?,?,?);`,
       [
         CitaMedica.idCitaMedica,
         CitaMedica.fechaCitaMedica,
         CitaMedica.horaCitaMedica,
         CitaMedica.idMascota,
+        CitaMedica.idEstadoCita,
       ],
     );
 
@@ -40,10 +41,11 @@ export const setCitaMedica = async (CitaMedica: CitaMedica) => {
 export const updateCitaMedica = async (CitaMedica: CitaMedica) => {
   try {
     const [result] = await promise.query<CitaMedicaResult>(
-      `update citaMedica set fechaCitaMedica =?, horaCitaMedica=? where idCitaMedica=?`,
+      `update citaMedica set fechaCitaMedica =?, horaCitaMedica=? idEstadoCita=? where idCitaMedica=?`,
       [
         CitaMedica.fechaCitaMedica,
         CitaMedica.horaCitaMedica,
+        CitaMedica.idEstadoCita,
         CitaMedica.idCitaMedica,
       ],
     );
@@ -65,7 +67,7 @@ export const updateCitaMedica = async (CitaMedica: CitaMedica) => {
 export const getCitasMedicasByIdMascota = async (idMascota: string) => {
   try {
     const [rows] = await promise.query<CitaMedicaMySQL[]>(
-      `select citaMedica.idCitaMedica, citaMedica.fechaCitaMedica, citaMedica.horaCitaMedica from citaMedica join fichaClinica on fichaClinica.idCitaMedica = citaMedica.idCitaMedica where fichaClinica.idMascota = ?;`,
+      `select citaMedica.idCitaMedica, citaMedica.fechaCitaMedica, citaMedica.horaCitaMedica, citaMedica.idMascota, citaMedica.idEstadoCita from citaMedica join fichaClinica on fichaClinica.idCitaMedica = citaMedica.idCitaMedica where fichaClinica.idMascota = ?;`,
       [idMascota],
     );
     return rows;
@@ -88,7 +90,7 @@ export const getCitasMedicasByIdMascota = async (idMascota: string) => {
 export const getCitasMedicasByRut = async (rut: number) => {
   try {
     const [rows] = await promise.query<CitaMedicaMySQL[]>(
-      `select citaMedica.idCitaMedica, citaMedica.fechaCitaMedica, citaMedica.horaCitaMedica from citaMedica join fichaClinica on fichaClinica.idCitaMedica = citaMedica.idCitaMedica join mascota on fichaClinica.idMascota = mascota.idMascota join mascotas_dueño on mascotas_dueño.idMascota = mascota.idMascota join dueño_mascota on dueño_mascota.idDueño = mascotas_dueño.idDueño join persona dueño_mascota.idPersona = persona.idPersona where persona.rut = ?;`,
+      `select citaMedica.idCitaMedica, citaMedica.fechaCitaMedica, citaMedica.horaCitaMedica, citaMedica.idMascota, citaMedica.idEstadoCita from citaMedica join fichaClinica on fichaClinica.idCitaMedica = citaMedica.idCitaMedica join mascota on fichaClinica.idMascota = mascota.idMascota join mascotas_dueño on mascotas_dueño.idMascota = mascota.idMascota join dueño_mascota on dueño_mascota.idDueño = mascotas_dueño.idDueño join persona dueño_mascota.idPersona = persona.idPersona where persona.rut = ?;`,
       [rut],
     );
     return rows;
