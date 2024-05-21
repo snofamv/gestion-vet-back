@@ -9,3 +9,5 @@ export { fichaClinicaRouter } from './fichaClinica.routes';
 export { fichaIngresoRouter } from './fichaIngreso.routes';
 export { tratamientoMascotaRouter } from './tratamientoMascota.routes';
 export { recetaMascotaRouter } from './recetaMascota.routes';
+export { especialidadRouter } from './especialidad.routes';
+export { insumoRouter } from './insumo.routes';

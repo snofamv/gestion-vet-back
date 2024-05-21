@@ -13,6 +13,8 @@ import {
   tratamientoMascotaRouter,
   recetaMascotaRouter,
   citaMedicaRouter,
+  especialidadRouter,
+  insumoRouter,
 } from '../routes';
 
 import { errorHandler } from '../middlewares/HandleError';
@@ -48,6 +50,8 @@ export class Server {
     this.app.use(fichaIngresoRouter);
     this.app.use(tratamientoMascotaRouter);
     this.app.use(recetaMascotaRouter);
+    this.app.use(especialidadRouter);
+    this.app.use(insumoRouter);
 
     this.app.use(errorHandler);
   }
