@@ -20,6 +20,6 @@ citaMedicaRouter.get(
 citaMedicaRouter.get('/citas-medicas', citaMedicaController.getCitasMedicas);
 
 citaMedicaRouter.get(
-  '/citas-medica/:idCitaMedica',
+  '/cita-medica/:idCitaMedica',
   citaMedicaController.getCitaByIdCitaMedica,
 );
