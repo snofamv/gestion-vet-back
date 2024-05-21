@@ -67,7 +67,7 @@ export const updateCitaMedica = async (CitaMedica: CitaMedica) => {
 export const getCitasMedicasByIdMascota = async (idMascota: string) => {
   try {
     const [rows] = await promise.query<CitaMedicaMySQL[]>(
-      `select citaMedica.idCitaMedica, citaMedica.fechaCitaMedica, citaMedica.horaCitaMedica, citaMedica.idMascota, citaMedica.idEstadoCita from citaMedica join fichaClinica on fichaClinica.idCitaMedica = citaMedica.idCitaMedica where fichaClinica.idMascota = ?;`,
+      `select * from citamedica where idMascota = ?;`,
       [idMascota],
     );
     return rows;
