@@ -1,5 +1,6 @@
 import { CitaMedica } from '../models/CitaMedica';
 import {
+  getCitaMedicaByIdCitaMedica,
   getCitasMedicas,
   getCitasMedicasByIdMascota,
   getCitasMedicasByRut,
@@ -27,4 +28,8 @@ export const getCitasMedicasByRutService = async (rut: number) => {
 
 export const getCitasMedicasService = async () => {
   return await getCitasMedicas();
+};
+
+export const getCitaByIdCitaMedicaService = async (idCitaMedica: string) => {
+  return await getCitaMedicaByIdCitaMedica(idCitaMedica);
 };

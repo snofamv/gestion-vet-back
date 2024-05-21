@@ -129,3 +129,26 @@ export const getCitasMedicas = async () => {
     }
   }
 };
+
+export const getCitaMedicaByIdCitaMedica = async (idCitaMedica: string) => {
+  try {
+    const [rows] = await promise.query<CitaMedicaMySQL[]>(
+      `select * from citaMedica where idCitaMedica=?;`,
+      [idCitaMedica],
+    );
+    return rows[0];
+  } catch (err) {
+    if (err instanceof Error) {
+      const newError = new ErrorHandler('Se ha producido un error interno.');
+
+      console.log(err.message);
+
+      newError.setStatus(500);
+      newError.setInternalMessage(
+        'Surgió un error al obtener cita Medica por id cita médica',
+      );
+      newError.setDetailsError(err.message);
+      throw newError;
+    }
+  }
+};

@@ -4,4 +4,6 @@ export interface CitaMedica extends RowDataPacket {
   idCitaMedica: string;
   fechaCitaMedica: string;
   horaCitaMedica: string;
+  idMascota: string;
+  idEstadoCita: number;
 }
