@@ -41,7 +41,7 @@ export const setCitaMedica = async (CitaMedica: CitaMedica) => {
 export const updateCitaMedica = async (CitaMedica: CitaMedica) => {
   try {
     const [result] = await promise.query<CitaMedicaResult>(
-      `update citaMedica set fechaCitaMedica =?, horaCitaMedica=? idEstadoCita=? where idCitaMedica=?`,
+      `update citaMedica set fechaCitaMedica =?, horaCitaMedica=?, idEstadoCita=? where idCitaMedica=?`,
       [
         CitaMedica.fechaCitaMedica,
         CitaMedica.horaCitaMedica,
