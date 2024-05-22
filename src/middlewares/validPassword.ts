@@ -13,6 +13,13 @@ export const validPassword = async (
     const usuarioBody: Usuario = req.body;
     const { oldPassword } = req.body;
 
+    if (!oldPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'campo contraseña actual requerido',
+      });
+    }
+
     const usuario = (await getUser(usuarioBody)) as Usuario;
 
     const validPassword = await comparePassword(
