@@ -16,7 +16,7 @@ fichaIngresoRouter.patch(
 );
 
 fichaIngresoRouter.get(
-  '/ficha-ingreso/Ficha-clinica/:idFichaClinica',
+  '/ficha-ingreso/ficha-clinica/:idFichaClinica',
   fichaIngresoController.getFichaIngresoByIdFichaClinica,
 );
 fichaIngresoRouter.get(

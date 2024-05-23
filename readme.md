@@ -37,7 +37,7 @@ POST /auth/login
 
 SIGNUP USUARIO => REGISTRAR PERSONA => EMPLEADO => USUARIO
 
-POST /auth/login
+POST /auth/signup
 
 ```json
 {
