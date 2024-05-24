@@ -8,7 +8,7 @@
 -[Endpoint Tratamiento](#endpoint-tratamiento)  
 -[Endpoint fichaIngreso](#endpoint-fichaingreso)  
 -[Endpoint receta](#endpoint-receta)
-
+-[ENV](#archivo-env)
 # variables de entorno .env
 
 ```bash
@@ -403,3 +403,12 @@ GET /recetas-mascota/ficha-ingreso/:idFichaIngreso
     npm install --save-dev eslint-config-prettier eslint-plugin-prettier
 
 ```
+## ENV Example
+
+PORT = 80
+NODE_ENVIRONMENT = 'production'
+DB_HOST='localhost'
+DB_PORT=3306
+DB_NAME='bd_clinicaVet'
+DB_USER='userVet'
+DB_PASSWORD='root'
